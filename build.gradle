@@ -101,3 +101,9 @@ dotnetBuild.dependsOn make_data_csproj
 
 //task ntest(type: 'NUnit', dependsOn: ['buildSolution']) {
 //}
+
+task helloWorld() {
+  doLast {
+    println("Hello, world.")
+  }
+}
