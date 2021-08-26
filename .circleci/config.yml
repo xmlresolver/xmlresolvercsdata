@@ -25,7 +25,7 @@ jobs:
       - run: sudo mv /tmp/microsoft.gpg /etc/apt/trusted.gpg.d/
       - run: sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
       - run: sudo sh -c 'apt-get update'
-      - run: sudo sh -c 'apt-cache search dotnet-sdk'
+      - run: sudo sh -c 'apt-get install dotnet-sdk-3.1'
 
       - restore_cache:
           keys:
@@ -39,7 +39,7 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew helloWorld
+      - run: ./gradlew dotnetBuild
 
       - persist_to_workspace:
           root: build
