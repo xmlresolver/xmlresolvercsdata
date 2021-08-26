@@ -60,12 +60,16 @@ dotnet {
     source = nugetSource
   }
 
+  /* I can't figure out how NUnit tests are supposed to be
+     integrated into the build; I have them in a separate
+     solution, but that's apparently not standard?
   test {
     collectCoverage = true
     nunit {
       testOutputXml = file("${buildDir}/reports/nunit")
     }
   }
+   */
 }
 
 task copy_data(type: Copy) {
@@ -99,8 +103,9 @@ task make_data_csproj(type: SaxonXsltTask, dependsOn: ["copy_data"]) {
 }
 dotnetBuild.dependsOn make_data_csproj
 
-//task ntest(type: 'NUnit', dependsOn: ['buildSolution']) {
-//}
+task dist(type: Exec, dependsOn: ["dotnetBuild"]) {
+  commandLine dotnetex, "test", "XmlResolverData/UnitTests/UnitTests.csproj"
+}
 
 task helloWorld() {
   doLast {
