@@ -1,0 +1,12 @@
+/.gradle
+/XmlResolverData/.idea
+/XmlResolverData/UnitTests/.idea
+/XmlResolverData/UnitTests/bin
+/XmlResolverData/UnitTests/obj
+/XmlResolverData/XmlResolverData/Data
+/XmlResolverData/XmlResolverData/bin
+/XmlResolverData/XmlResolverData/obj
+/build
+/data/
+*.DotSettings.user
+.DS_Store
