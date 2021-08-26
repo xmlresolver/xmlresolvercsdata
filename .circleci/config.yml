@@ -5,8 +5,8 @@ jobs:
     docker:
       - image: microsoft/dotnet:sdk
         auth:
-          - username: $DOCKERHUB_USER
-          - password: $DOCKERHUB_TOKEN
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_TOKEN
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       DOTNET_CLI_TELEMETRY_OPTOUT: 1
