@@ -1,61 +1,13 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: ubuntu-1604:202004-01
-
-    java:
-      version: oraclejdk8
-
     working_directory: ~/repo
-
+    docker:
+      - image: microsoft/dotnet:sdk
     environment:
-      JVM_OPTS: -Xmx16g
-      TERM: dumb
-
-    dependencies:
-      pre:
-        - sudo apt-get install curl gnupg
-        - sudo sh -c 'curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /tmp/microsoft.gpg'
-        - sudo mv /tmp/microsoft.gpg /etc/apt/trusted.gpg.d/
-        - sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
-        - sudo apt-get update 
-        - sudo apt-cache search dotnet-sdk
-      override:
-        - sudo apt-get install dotnet-sdk-2.1.4
-
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "7a:0e:71:f5:b2:c8:5c:0d:3c:14:56:10:99:36:c9:ef"
-
       - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            - v1-dependencies-
-
-      - run: ./gradlew dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-
-      - run: ./gradlew helloWorld
-
-      - persist_to_workspace:
-          root: build
-          paths:
-            - dist
-
-
-workflows:
-  version: 2
-  check:
-    jobs:
-      - build:
-          filters:
-            branches:
-              ignore: gh-pages
+      - run: dotnet restore
+      - run: dotnet build
