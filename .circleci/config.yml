@@ -43,7 +43,7 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew dotnetBuild
+      - run: ./gradlew --info dotnetBuild
 
       - persist_to_workspace:
           root: build
