@@ -45,6 +45,11 @@ jobs:
 
       - run: ./gradlew --info dotnetBuild
 
+      - persist_to_workspace:
+          root: XmlResolverData
+          paths:
+            - XmlResolverData
+
   publish-release:
     machine:
       image: ubuntu-1604:202004-01
