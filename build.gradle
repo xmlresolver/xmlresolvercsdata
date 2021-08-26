@@ -104,6 +104,7 @@ task make_data_csproj(type: SaxonXsltTask, dependsOn: ["copy_data"]) {
 dotnetBuild.dependsOn make_data_csproj
 
 task dist(type: Exec, dependsOn: ["dotnetBuild"]) {
+  environment "CSHARP_XMLRESOLVER_ROOT", projectDir
   commandLine dotnetex, "test", "XmlResolverData/UnitTests/UnitTests.csproj"
 }
 
