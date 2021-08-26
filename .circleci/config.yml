@@ -46,8 +46,8 @@ jobs:
       - run: ./gradlew --info dotnetBuild
 
   publish-release:
-    docker:
-      - image: ubuntu-1604:202004-01
+    machine:
+      image: ubuntu-1604:202004-01
     steps:
       - attach_workspace:
           at: ./artifacts
