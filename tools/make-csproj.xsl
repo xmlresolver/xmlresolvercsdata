@@ -66,7 +66,7 @@
 <xsl:template match="system|uri">
   <EmbeddedResource Include="Data/{substring-after(../@uri, 'root/')}">
     <Link>
-    <xsl:sequence select="'Org.XmlResolver.' || f:patch-uri(substring-after(../@uri, 'root/'))"/>
+    <xsl:sequence select="f:patch-uri(substring-after(../@uri, 'root/'))"/>
     </Link>
   </EmbeddedResource>
 </xsl:template>
