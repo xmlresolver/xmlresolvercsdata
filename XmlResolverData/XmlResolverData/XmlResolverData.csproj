@@ -1100,5 +1100,20 @@
       <EmbeddedResource Include="Data/www.w3.org/TR/xslt-30/xml-to-json.xsl">
          <Link>www_w3_org.TR.xslt-30.xml-to-json.xsl</Link>
       </EmbeddedResource>
+      <EmbeddedResource Include="Data/www.w3.org/2007/schema-for-xslt20.xsd">
+         <Link>www_w3_org.2007.schema-for-xslt20.xsd</Link>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data/xmlcatalogs.org/schema/1.1/catalog.xsd">
+         <Link>xmlcatalogs_org.schema.1_1.catalog.xsd</Link>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data/xmlcatalogs.org/schema/1.1/catalog.rnc">
+         <Link>xmlcatalogs_org.schema.1_1.catalog.rnc</Link>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data/xmlcatalogs.org/schema/1.1/catalog.rng">
+         <Link>xmlcatalogs_org.schema.1_1.catalog.rng</Link>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data/xmlcatalogs.org/schema/1.1/catalog.dtd">
+         <Link>xmlcatalogs_org.schema.1_1.catalog.dtd</Link>
+      </EmbeddedResource>
    </ItemGroup>
 </Project>
