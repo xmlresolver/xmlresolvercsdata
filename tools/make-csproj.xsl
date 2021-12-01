@@ -63,12 +63,27 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="system|uri">
+<xsl:template match="system">
   <EmbeddedResource Include="Data/{substring-after(../@uri, 'root/')}">
     <Link>
     <xsl:sequence select="f:patch-uri(substring-after(../@uri, 'root/'))"/>
     </Link>
   </EmbeddedResource>
+</xsl:template>
+
+<xsl:template match="uri">
+  <xsl:choose>
+    <xsl:when test="preceding-sibling::uri">
+      <!-- skip dupliates in the .csproj file mapping -->
+    </xsl:when>
+    <xsl:otherwise>
+      <EmbeddedResource Include="Data/{substring-after(../@uri, 'root/')}">
+        <Link>
+          <xsl:sequence select="f:patch-uri(substring-after(../@uri, 'root/'))"/>
+        </Link>
+      </EmbeddedResource>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:function name="f:patch-uri" as="xs:string">
