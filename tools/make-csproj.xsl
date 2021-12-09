@@ -28,25 +28,25 @@
     <ItemGroup>
       <!-- These are hard coded; maybe they shouldn't be. -->
         <EmbeddedResource Include="Data/catalog.xml">
-                <Link>Org.XmlResolver.catalog.xml</Link>
+                <LogicalName>Org.XmlResolver.catalog.xml</LogicalName>
         </EmbeddedResource>
         <EmbeddedResource Include="Data/cat-entities.xml">
-                <Link>Org.XmlResolver.cat-entities.xml</Link>
+                <LogicalName>Org.XmlResolver.cat-entities.xml</LogicalName>
         </EmbeddedResource>
         <EmbeddedResource Include="Data/cat-mathml2.xml">
-                <Link>Org.XmlResolver.cat-mathml2.xml</Link>
+                <LogicalName>Org.XmlResolver.cat-mathml2.xml</LogicalName>
         </EmbeddedResource>
         <EmbeddedResource Include="Data/cat-mathml3.xml">
-                <Link>Org.XmlResolver.cat-mathml3.xml</Link>
+                <LogicalName>Org.XmlResolver.cat-mathml3.xml</LogicalName>
         </EmbeddedResource>
         <EmbeddedResource Include="Data/cat-rddl.xml">
-                <Link>Org.XmlResolver.cat-rddl.xml</Link>
+                <LogicalName>Org.XmlResolver.cat-rddl.xml</LogicalName>
         </EmbeddedResource>
         <EmbeddedResource Include="Data/cat-svg.xml">
-                <Link>Org.XmlResolver.cat-svg.xml</Link>
+                <LogicalName>Org.XmlResolver.cat-svg.xml</LogicalName>
         </EmbeddedResource>
         <EmbeddedResource Include="Data/cat-xhtml.xml">
-                <Link>Org.XmlResolver.cat-xhtml.xml</Link>
+                <LogicalName>Org.XmlResolver.cat-xhtml.xml</LogicalName>
         </EmbeddedResource>
         <xsl:apply-templates select="//system|//uri"/>
     </ItemGroup>
@@ -65,9 +65,9 @@
 
 <xsl:template match="system">
   <EmbeddedResource Include="Data/{substring-after(../@uri, 'root/')}">
-    <Link>
-    <xsl:sequence select="f:patch-uri(substring-after(../@uri, 'root/'))"/>
-    </Link>
+    <LogicalName>
+      <xsl:sequence select="f:patch-uri(substring-after(../@uri, 'root/'))"/>
+    </LogicalName>
   </EmbeddedResource>
 </xsl:template>
 
@@ -78,9 +78,9 @@
     </xsl:when>
     <xsl:otherwise>
       <EmbeddedResource Include="Data/{substring-after(../@uri, 'root/')}">
-        <Link>
+        <LogicalName>
           <xsl:sequence select="f:patch-uri(substring-after(../@uri, 'root/'))"/>
-        </Link>
+        </LogicalName>
       </EmbeddedResource>
     </xsl:otherwise>
   </xsl:choose>
