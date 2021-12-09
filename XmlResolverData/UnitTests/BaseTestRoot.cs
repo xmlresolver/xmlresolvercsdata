@@ -3,14 +3,17 @@ using Org.XmlResolver.Utils;
 
 namespace UnitTests {
     public class BaseTestRoot {
-        public readonly string TEST_ROOT_PATH;
-        public readonly Uri TEST_ROOT_DIRECTORY;
+        protected readonly string TEST_ROOT_PATH;
+        protected readonly Uri TEST_ROOT_DIRECTORY;
 
         public BaseTestRoot() {
             // FIXME: Deal with Windows paths
-            string path = Environment.GetEnvironmentVariable("CSHARP_XMLRESOLVER_ROOT");
+            string path = Environment.GetEnvironmentVariable("CSHARP_XMLRESOLVERDATA_ROOT");
             if (string.IsNullOrEmpty(path)) {
-                path = "/Users/ndw/Projects/xmlresolver/cs"; // It won't work for you, but ...
+                path = Environment.GetEnvironmentVariable("CSHARP_XMLRESOLVER_ROOT");
+            }
+            if (string.IsNullOrEmpty(path)) {
+                path = "/Users/ndw/Projects/xmlresolver/csdata"; // It won't work for you, but ...
             }
 
             while (path.EndsWith("/")) {
