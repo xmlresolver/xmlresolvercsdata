@@ -33,7 +33,6 @@ using Org.XmlResolver.Features;
 
 namespace UnitTests {
     public class DataTest : ResolverTest {
-        private string dataVersion = XmlResolverData.Version.DataVersion;
         private XmlResolverConfiguration config = null;
         private CatalogManager manager = null;
 
