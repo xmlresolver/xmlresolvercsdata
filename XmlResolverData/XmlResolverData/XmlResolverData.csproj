@@ -1115,5 +1115,8 @@
       <EmbeddedResource Include="Data/xmlcatalogs.org/schema/1.1/catalog.dtd">
          <LogicalName>xmlcatalogs_org.schema.1_1.catalog.dtd</LogicalName>
       </EmbeddedResource>
+      <EmbeddedResource Include="Data/xmlresolver.org/data/resolver/succeeded/test/check.xml">
+         <LogicalName>xmlresolver_org.data.resolver.succeeded.test.check.xml</LogicalName>
+      </EmbeddedResource>
    </ItemGroup>
 </Project>
