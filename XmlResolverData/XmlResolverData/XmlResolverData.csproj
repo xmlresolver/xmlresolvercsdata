@@ -146,8 +146,8 @@
       <EmbeddedResource Include="Data/www.w3.org/2001/XMLSchema.xsd">
          <LogicalName>www_w3_org.2001.XMLSchema.xsd</LogicalName>
       </EmbeddedResource>
-      <EmbeddedResource Include="Data/www.w3.org/2001/datatypes.xsd">
-         <LogicalName>www_w3_org.2001.datatypes.xsd</LogicalName>
+      <EmbeddedResource Include="Data/www.w3.org/2001/datatypes.dtd">
+         <LogicalName>www_w3_org.2001.datatypes.dtd</LogicalName>
       </EmbeddedResource>
       <EmbeddedResource Include="Data/www.w3.org/2001/xml.xsd">
          <LogicalName>www_w3_org.2001.xml.xsd</LogicalName>
@@ -314,8 +314,8 @@
       <EmbeddedResource Include="Data/www.w3.org/2009/XMLSchema/XMLSchema.dtd">
          <LogicalName>www_w3_org.2009.XMLSchema.XMLSchema.dtd</LogicalName>
       </EmbeddedResource>
-      <EmbeddedResource Include="Data/www.w3.org/2009/XMLSchema/datatypes.xsd">
-         <LogicalName>www_w3_org.2009.XMLSchema.datatypes.xsd</LogicalName>
+      <EmbeddedResource Include="Data/www.w3.org/2009/XMLSchema/datatypes.dtd">
+         <LogicalName>www_w3_org.2009.XMLSchema.datatypes.dtd</LogicalName>
       </EmbeddedResource>
       <EmbeddedResource Include="Data/www.w3.org/Graphics/SVG/1.1/DTD/svg-animation.mod">
          <LogicalName>www_w3_org.Graphics.SVG.1_1.DTD.svg-animation.mod</LogicalName>
