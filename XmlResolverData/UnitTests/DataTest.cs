@@ -297,7 +297,7 @@ namespace UnitTests {
 
     [Test]
     public void Gen_lookupSystemd1e94() {
-        Uri result = manager.LookupSystem("https://www.w3.org/2001/datatypes.xsd");
+        Uri result = manager.LookupSystem("https://www.w3.org/2001/datatypes.dtd");
         Assert.NotNull(result);
     }
 
@@ -963,7 +963,7 @@ namespace UnitTests {
 
     [Test]
     public void Gen_lookupSystemd1e269() {
-        Uri result = manager.LookupSystem("https://www.w3.org/2009/XMLSchema/datatypes.xsd");
+        Uri result = manager.LookupSystem("https://www.w3.org/2009/XMLSchema/datatypes.dtd");
         Assert.NotNull(result);
     }
 
