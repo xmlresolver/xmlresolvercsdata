@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
                 xmlns:f="https://xmlresolver.org/ns/xslt/functions"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
+                xmlns:rddl="http://www.rddl.org/"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
                 exclude-result-prefixes="f map xs"
                 version="3.0">
 
@@ -14,7 +15,7 @@
 
 <xsl:template match="/">
   <xsl:variable name="entries" as="element()*">
-    <xsl:apply-templates select="//public|//system|//uri"
+    <xsl:apply-templates select="//public|//system|//uri|//namespace"
                          mode="catalog-entry"/>
   </xsl:variable>
   <xsl:variable name="subset" select="()"/>
@@ -263,6 +264,24 @@ namespace UnitTests {
 <xsl:template match="uri" mode="catalog-entry">
   <uri name="{.}" uri="{f:patch-uri(substring-after(../@uri, 'root/'))}"/>
 </xsl:template>
+
+<xsl:template match="namespace" mode="catalog-entry">
+  <xsl:if test="count(../purpose) gt 1">
+    <xsl:message terminate="yes">At most purpose is allowed</xsl:message>
+  </xsl:if>
+
+  <xsl:variable name="namespace" select="string(.)"/>
+  <xsl:variable name="uri" select="substring-after(../@uri, 'root/')"/>
+
+  <xsl:for-each select="../purpose">
+    <xsl:variable name="purpose" select="string(.)"/>
+    <xsl:for-each select="../nature">
+      <uri name="{$namespace}" uri="{f:patch-uri($uri)}"
+           rddl:purpose="{$purpose}"
+           rddl:nature="{string(.)}"/>
+    </xsl:for-each>
+  </xsl:for-each>
+</xsl:template>  
 
 <xsl:function name="f:patch-uri" as="xs:string">
   <xsl:param name="uri" as="xs:string"/>
