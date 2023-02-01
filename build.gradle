@@ -73,6 +73,7 @@ task make_data_csproj(type: SaxonXsltTask, dependsOn: ["copy_data"]) {
 }
 
 task dotnetBuild(
+  dependsOn: ["make_data_catalog", "make_data_tests", "make_data_csproj", "copy_data"]
 ) {
   inputs.files fileTree(dir: "${projectDir}/XmlResolverData/XmlResolverData")
   outputs.file "${projectDir}/XmlResolverData/XmlResolverData/bin/Release/net6.0/XmlResolverData.dll"
