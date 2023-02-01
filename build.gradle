@@ -1,6 +1,5 @@
 plugins {
-  id "com.itiviti.dotnet" version "1.7.2"
-  id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.9.3'
+  id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.9.6'
 }
 
 defaultTasks "dist"
@@ -44,36 +43,6 @@ if (!hasProperty("nugetSource")) {
   ext.nugetSource = "SOURCEREQUIREDTOPUSH"
 }
 
-dotnet {
-  dotnetExecutable = dotnetex
-  solution = 'XmlResolverData/XmlResolverData.sln'
-  configuration = 'Release'
-  verbosity = 'Normal'
-  projectName = 'XmlResolverData'
-
-  restore {
-  }
-
-  build {
-  }  
-
-  nugetPush {
-    apiKey = nugetApiKey
-    source = nugetSource
-  }
-
-  /* I can't figure out how NUnit tests are supposed to be
-     integrated into the build; I have them in a separate
-     solution, but that's apparently not standard?
-  test {
-    collectCoverage = true
-    nunit {
-      testOutputXml = file("${buildDir}/reports/nunit")
-    }
-  }
-   */
-}
-
 task copy_data(type: Copy) {
   into "${projectDir}/XmlResolverData/XmlResolverData/Data"
   from ("${projectDir}/data/src/data") {
@@ -86,7 +55,6 @@ task make_data_catalog(type: SaxonXsltTask, dependsOn: ["copy_data"]) {
   output "${projectDir}/XmlResolverData/XmlResolverData/Data/catalog.xml"
   stylesheet "${projectDir}/tools/make-catalog.xsl"
 }
-dotnetBuild.dependsOn make_data_catalog
 
 task make_data_tests(type: SaxonXsltTask, dependsOn: ["copy_data"]) {
   outputs.file "${projectDir}/XmlResolverData/UnitTests/DataTest.cs"
@@ -103,7 +71,28 @@ task make_data_csproj(type: SaxonXsltTask, dependsOn: ["copy_data"]) {
   output "${projectDir}/XmlResolverData/XmlResolverData/XmlResolverData.csproj"
   stylesheet "${projectDir}/tools/make-csproj.xsl"
 }
-dotnetBuild.dependsOn make_data_csproj
+
+task dotnetBuild(
+) {
+  inputs.files fileTree(dir: "${projectDir}/XmlResolverData/XmlResolverData")
+  outputs.file "${projectDir}/XmlResolverData/XmlResolverData/bin/Release/net6.0/XmlResolverData.dll"
+  outputs.file "${projectDir}/XmlResolverData/XmlResolverData/bin/Release/XmlResolverData.${dataVersion}.nupkg"
+
+  doLast {
+    exec {
+      workingDir = "${projectDir}/XmlResolverData"
+      commandLine dotnetex, 'restore', 'XmlResolverData.sln', '--verbosity', 'Normal'
+    }
+  }
+  doLast {
+    exec {
+      workingDir = "${projectDir}/XmlResolverData"
+      commandLine dotnetex, 'build', 'XmlResolverData.sln', '--verbosity', 'Normal',
+        '--configuration', 'Release',  '/nodereuse:false', '--no-restore',
+        "-p:Version=${dataVersion}", "-p:PackageVersion=${dataVersion}"
+    }
+  }
+}
 
 task dist(type: Exec, dependsOn: ["dotnetBuild"]) {
   environment "CSHARP_XMLRESOLVER_ROOT", projectDir
