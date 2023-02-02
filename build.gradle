@@ -95,9 +95,48 @@ task dotnetBuild(
   }
 }
 
-task dist(type: Exec, dependsOn: ["dotnetBuild"]) {
-  environment "CSHARP_XMLRESOLVER_ROOT", projectDir
-  commandLine dotnetex, "test", "XmlResolverData/UnitTests/UnitTests.csproj"
+task "dotnetTest"(
+) {
+  doLast {
+    exec {
+      workingDir = projectDir
+      environment "CSHARP_XMLRESOLVER_ROOT", projectDir
+      commandLine dotnetex, 'test', 'XmlResolverData/XmlResolverData.sln',
+        '--verbosity', 'Normal', '--configuration', 'Release',
+        '--no-build', '/p:CollectCoverage=true',
+        '/p:ExcludeByFile="**/*.designer.cs;**/*.xaml.cs;**/*.g.cs"',
+        '/p:CoverletOutputFormat=opencover',
+        "/p:CoverletOutput=${buildDir}/reports/coverlet/",
+        '--',
+        "NUnit.TestOutputXml=${buildDir}/reports/nunit"
+    }
+  }
+}
+
+task "dotnetNugetPush"(
+) {
+  dependsOn "dotnetBuild", "dotnetTest"
+
+  inputs.files "${projectDir}/XmlResolverData/XmlResolverData/bin/Release/XmlResolverData.${dataVersion}.nupkg"
+
+  doLast {
+    exec {
+      workingDir = projectDir
+      commandLine dotnetex, "restore", "XmlResolverData/XmlResolverData.sln", "--verbosity", "Normal"
+    }
+  }
+
+  doLast {
+    exec {
+      workingDir = projectDir
+      commandLine dotnetex, "nuget", "push",
+        "${projectDir}/XmlResolverData/XmlResolverData/bin/Release/XmlResolverData.${dataVersion}.nupkg",
+        "--api-key", nugetApiKey, "--source", nugetSource
+    }
+  }
+}
+
+task dist(type: Exec, dependsOn: ["dotnetBuild", "dotnetTest"]) {
 }
 
 task helloWorld() {
