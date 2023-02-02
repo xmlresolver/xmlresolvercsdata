@@ -136,7 +136,8 @@ task "dotnetNugetPush"(
   }
 }
 
-task dist(type: Exec, dependsOn: ["dotnetBuild", "dotnetTest"]) {
+task dist(dependsOn: ["dotnetBuild", "dotnetTest"]) {
+  // Just somewhere to hang dependencies
 }
 
 task helloWorld() {
