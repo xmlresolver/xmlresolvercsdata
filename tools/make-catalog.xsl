@@ -70,7 +70,11 @@ namespace UnitTests {
                     catalog="Org.XmlResolver.cat-xhtml.xml"/>
     <delegateSystem systemIdStartString="https://www.w3.org/MarkUp/DTD/xhtml"
                     catalog="Org.XmlResolver.cat-xhtml.xml"/>
+    <delegateSystem systemIdStartString="http://www.w3.org/MarkUp/DTD/xhtml"
+                    catalog="Org.XmlResolver.cat-xhtml.xml"/>
     <delegateSystem systemIdStartString="https://www.w3.org/TR/xhtml"
+                    catalog="Org.XmlResolver.cat-xhtml.xml"/>
+    <delegateSystem systemIdStartString="http://www.w3.org/TR/xhtml"
                     catalog="Org.XmlResolver.cat-xhtml.xml"/>
   </xsl:variable>
 
@@ -103,6 +107,8 @@ namespace UnitTests {
     <delegatePublic publicIdStartString="-//W3C//DTD SVG"
                     catalog="Org.XmlResolver.cat-svg.xml"/>
     <delegateSystem systemIdStartString="https://www.w3.org/Graphics/SVG/1.1/"
+                    catalog="Org.XmlResolver.cat-svg.xml"/>
+    <delegateSystem systemIdStartString="http://www.w3.org/Graphics/SVG/1.1/"
                     catalog="Org.XmlResolver.cat-svg.xml"/>
   </xsl:variable>
 
@@ -139,7 +145,11 @@ namespace UnitTests {
                     catalog="Org.XmlResolver.cat-entities.xml"/>
     <delegateSystem systemIdStartString="https://www.w3.org/2003/entities/"
                     catalog="Org.XmlResolver.cat-entities.xml"/>
+    <delegateSystem systemIdStartString="http://www.w3.org/2003/entities/"
+                    catalog="Org.XmlResolver.cat-entities.xml"/>
     <delegateSystem systemIdStartString="https://www.w3.org/Math/DTD/mathml1/"
+                    catalog="Org.XmlResolver.cat-entities.xml"/>
+    <delegateSystem systemIdStartString="http://www.w3.org/Math/DTD/mathml1/"
                     catalog="Org.XmlResolver.cat-entities.xml"/>
   </xsl:variable>
 
@@ -166,6 +176,8 @@ namespace UnitTests {
     <xsl:sequence select="$prefix"/>
     <delegateSystem systemIdStartString="https://www.w3.org/Math/DTD/mathml2/"
                     catalog="Org.XmlResolver.cat-mathml2.xml"/>
+    <delegateSystem systemIdStartString="http://www.w3.org/Math/DTD/mathml2/"
+                    catalog="Org.XmlResolver.cat-mathml2.xml"/>
   </xsl:variable>
 
   <xsl:variable name="subset"
@@ -184,6 +196,8 @@ namespace UnitTests {
   <xsl:variable name="prefix" as="node()*">
     <xsl:sequence select="$prefix"/>
     <delegateSystem systemIdStartString="https://www.w3.org/Math/DTD/mathml3/"
+                    catalog="Org.XmlResolver.cat-mathml3.xml"/>
+    <delegateSystem systemIdStartString="http://www.w3.org/Math/DTD/mathml3/"
                     catalog="Org.XmlResolver.cat-mathml3.xml"/>
   </xsl:variable>
 
@@ -205,6 +219,8 @@ namespace UnitTests {
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> At present, only the RDDL public identifiers begin with -//XML-DEV// </xsl:comment>
     <delegatePublic publicIdStartString="-//XML-DEV//"
+                    catalog="Org.XmlResolver.cat-rddl.xml"/>
+    <delegateSystem systemIdStartString="https://www.rddl.org/"
                     catalog="Org.XmlResolver.cat-rddl.xml"/>
     <delegateSystem systemIdStartString="http://www.rddl.org/"
                     catalog="Org.XmlResolver.cat-rddl.xml"/>
