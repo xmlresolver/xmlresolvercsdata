@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
    <PropertyGroup>
-      <TargetFramework>net6.0</TargetFramework>
+      <LangVersion>9.0</LangVersion>
+      <TargetFrameworks>net6.0;net8.0;net481</TargetFrameworks>
       <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
       <Authors>Norman Walsh</Authors>
       <Description>This package provides a common set of XML resources and an XML Catalog that resolves them. It’s most commonly used with the xmlresolver package.</Description>
@@ -10,10 +11,12 @@
       <PackageProjectUrl>https://xmlresolver.org/</PackageProjectUrl>
       <RepositoryUrl>https://github.com/xmlresolver/xmlresolverdata</RepositoryUrl>
       <RepositoryType>git</RepositoryType>
-      <PackageReleaseNotes>Experimental release. Probably buggy. Caveat emptor.</PackageReleaseNotes>
+      <PackageReleaseNotes>XML Resolver data assembly.</PackageReleaseNotes>
       <PackageSummary>This is a standard set of useful XML resources for use with the XML Resolver.</PackageSummary>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
    </PropertyGroup>
    <ItemGroup>
+      <None Include="README.md" Pack="true" PackagePath="\"/>
       <EmbeddedResource Include="Data/catalog.xml">
          <LogicalName>Org.XmlResolver.catalog.xml</LogicalName>
       </EmbeddedResource>
@@ -133,6 +136,15 @@
       </EmbeddedResource>
       <EmbeddedResource Include="Data/www.rddl.org/xhtml-symbol.ent">
          <LogicalName>www_rddl_org.xhtml-symbol.ent</LogicalName>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data/www.w3.org/2000/09/xmldsig-core-schema.xsd">
+         <LogicalName>www_w3_org.2000.09.xmldsig-core-schema.xsd</LogicalName>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data/www.w3.org/2009/xmldsig11-schema.xsd">
+         <LogicalName>www_w3_org.2009.xmldsig11-schema.xsd</LogicalName>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Data/www.w3.org/2010/xmldsig2-schema.xsd">
+         <LogicalName>www_w3_org.2010.xmldsig2-schema.xsd</LogicalName>
       </EmbeddedResource>
       <EmbeddedResource Include="Data/www.w3.org/1999/xlink.xsd">
          <LogicalName>www_w3_org.1999.xlink.xsd</LogicalName>
