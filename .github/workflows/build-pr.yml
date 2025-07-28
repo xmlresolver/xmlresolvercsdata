@@ -56,6 +56,8 @@ jobs:
           sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-noble-prod noble main" > /etc/apt/sources.list.d/dotnetdev.list'
           sudo apt-get update
           sudo apt-get install dotnet-sdk-8.0
+          sudo add-apt-repository ppa:dotnet/backports
+          sudo apt-get install dotnet6
 
       - name: Checkout the branch
         uses: actions/checkout@v3
