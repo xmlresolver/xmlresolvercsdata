@@ -12,7 +12,8 @@
 <xsl:template match="/">
   <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-      <TargetFramework>net6.0</TargetFramework>
+      <LangVersion>9.0</LangVersion>
+      <TargetFrameworks>net6.0;net8.0;net481</TargetFrameworks>
       <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
       <Authors>Norman Walsh</Authors>
       <Description>This package provides a common set of XML resources and an XML Catalog that resolves them. It’s most commonly used with the xmlresolver package.</Description>
@@ -21,11 +22,14 @@
       <PackageProjectUrl>https://xmlresolver.org/</PackageProjectUrl>
       <RepositoryUrl>https://github.com/xmlresolver/xmlresolverdata</RepositoryUrl>
       <RepositoryType>git</RepositoryType>
-      <PackageReleaseNotes>Experimental release. Probably buggy. Caveat emptor.</PackageReleaseNotes>
+      <PackageReleaseNotes>XML Resolver data assembly.</PackageReleaseNotes>
       <PackageSummary>This is a standard set of useful XML resources for use with the XML Resolver.</PackageSummary>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
+      <None Include="README.md" Pack="true" PackagePath="\"/>
+
       <!-- These are hard coded; maybe they shouldn't be. -->
         <EmbeddedResource Include="Data/catalog.xml">
                 <LogicalName>Org.XmlResolver.catalog.xml</LogicalName>
